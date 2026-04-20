@@ -1,9 +1,11 @@
-Make executable
+Make executable:
+
 chmod +x /home/sh/internet/check_internet.sh
 
 
 
-Add cron job
+Add cron job:
+
 crontab -e
 
 Add:
