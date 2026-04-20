@@ -10,4 +10,4 @@ crontab -e
 
 Add:
 
-*/5 * * * * /home/sh/internet/check_internet.sh
+*/20 * * * * /home/sh/internet/check_internet.sh
