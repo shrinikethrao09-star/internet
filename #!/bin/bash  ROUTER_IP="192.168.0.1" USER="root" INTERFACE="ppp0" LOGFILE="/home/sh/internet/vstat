@@ -1,0 +1,13 @@
+#!/bin/bash
+
+ROUTER_IP="192.168.0.1"
+USER="root"
+INTERFACE="ppp0"
+LOGFILE="/home/sh/internet/router_usage.log"
+
+echo "===== $(date) =====" >> $LOGFILE
+echo "Fetching router usage..." >> $LOGFILE
+
+ssh ${USER}@${ROUTER_IP} "vnstat -i ${INTERFACE} -d" >> $LOGFILE 2>&1
+
+echo "" >> $LOGFILE
