@@ -1,17 +1,12 @@
 #!/bin/bash
 
-PING_TARGET="8.8.8.8"
+URL="http://clients3.google.com/generate_204"
 LOGFILE="/home/sh/internet/router_check.log"
 
-# 🌐 Check internet (10 pings)
-if ! ping -c 10 $PING_TARGET > /dev/null; then
-    echo "$(date): Internet FAIL (triggering reboot)" >> $LOGFILE
-
-    echo "$(date): Rebooting router in 30 seconds..." >> $LOGFILE
-    sleep 30
-
-    ssh -o ConnectTimeout=5 root@192.168.1.1 reboot
-
-else
+if wget -q -O /dev/null --timeout=60 $URL; then
     echo "$(date): Internet OK" >> $LOGFILE
+else
+    echo "$(date): Internet FAIL (triggering reboot)" >> $LOGFILE
+    sleep 30
+    ssh -o ConnectTimeout=60 root@192.168.1.1 reboot
 fi
